@@ -7,7 +7,7 @@ The demo function handles the receipt of a `Microsoft.Storage.BlobCreated` event
 
 ## Building the function
 
-The following steps are optional, you can proceed to deploying the function if you wish to use the prebuilt image. You should also have a look at [OpenFaaS Cloud](https://github.com/openfaas/openfaas-cloud) as it can be used for a hosted GitOps build and deployment flow.
+The following steps are optional, you can proceed to [Deploying the function](#Deploying-the-function) if you wish to use the prebuilt image. You should also have a look at [OpenFaaS Cloud](https://github.com/openfaas/openfaas-cloud) as it can be used for a hosted GitOps build and deployment flow.
 
 1. `git clone https://github.com/johnmccabe/cloudevents-slack-demo.git`
 2. `cd cloudevents-slack-demo`
@@ -21,6 +21,7 @@ The following steps are optional, you can proceed to deploying the function if y
 1. Create a secret containing your Slack token, for example on Swarm or Kubernetes.
 
        echo <slack token> | docker secret create cloudevent-slack-token -
+       kubectl create secret generic secret-api-key --from-file=cloudevent-slack-token=<slack token file> --namespace openfaas-fn
 
 2. Replace `<SLACK_ROOM_ID>` with your Slack room id in `stack.yml`
 3. Deploy the function to your OpenFaaS platform
